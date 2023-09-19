@@ -63,7 +63,10 @@ executable monad-video
     -- Modules included in this executable, other than Main.
     other-modules:
         Paper.Term,
-        Paper.Exception
+        Paper.Exception,
+        Paper.State,
+        Paper.Output,
+        Paper.ExceptionMonad
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

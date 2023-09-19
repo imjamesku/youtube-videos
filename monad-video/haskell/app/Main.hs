@@ -2,6 +2,9 @@
 
 module Main where
 
+import Paper.Output (eval)
+import Paper.Term (answer)
+
 newtype State s a = State {runState :: s -> (a, s)}
 
 instance Functor (State s) where
@@ -38,5 +41,10 @@ stackMaip = do
 -- stackMaip :: State Stack Int
 -- stackMaip = push 3 >> push 4 >> pop
 
+-- main :: IO ()
+-- main = print $ runState stackMaip [1, 2]
+
 main :: IO ()
-main = print $ runState stackMaip [1, 2]
+main = do
+  let (output, _) = eval answer
+  putStrLn output
