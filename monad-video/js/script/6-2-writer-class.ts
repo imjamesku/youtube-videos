@@ -23,6 +23,9 @@ class Writer<T> {
     static create<T>(x: T, log: string[]): Writer<T> {
         return new Writer(x, log);
     }
+    static tell(log: string): Writer<undefined> {
+        return new Writer(undefined, [log]);
+    }
 
 }
 
@@ -42,8 +45,7 @@ console.log(res.log)
 
 // imaginary async like do notation
 async function imaginaryAsyncLikeDoNotation(): Writer<number> {
-    const x = await add2(1);
-    tell("inserted");
-    const y = mult3(x);
-    return y
+    const x = await Writer.unit(1).flatMap(add2);
+    Writer.tell("inserted");
+    return mult3(x);
 }
