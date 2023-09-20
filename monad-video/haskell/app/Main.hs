@@ -2,7 +2,7 @@
 
 module Main where
 
-import Paper.Output (eval)
+import Paper.State (eval)
 import Paper.Term (answer)
 
 newtype State s a = State {runState :: s -> (a, s)}
@@ -33,6 +33,7 @@ pop = State $ \(x : xs) -> (x, xs)
 push :: Int -> State Stack ()
 push a = State $ \xs -> ((), a : xs)
 
+stackMaip :: State Stack Int
 stackMaip = do
   push 3
   push 4
@@ -46,5 +47,6 @@ stackMaip = do
 
 main :: IO ()
 main = do
-  let (output, _) = eval answer
-  putStrLn output
+  let (a, b) = eval answer 0
+  print a
+  print b
