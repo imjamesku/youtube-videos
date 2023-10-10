@@ -35,7 +35,17 @@ doStuff = do
   tell "123"
   return y
 
+-- doStuff without do notation
+doStuff2 :: M Int
+doStuff2 = add2 1 >>= (\x -> mult2 x >>= (\y -> tell "doStuff" >>= (\_ -> tell "123" >>= (\_ -> return y))))
+
 main :: IO ()
 main = do
   let res = doStuff
   print res
+
+someFunction :: IO Int
+someFunction =
+  do
+    user <- fetchUser
+    ... return 1
